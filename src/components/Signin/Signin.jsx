@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Button } from "../index";
+import { Input, Button, Loader } from "../index";
 import authService from "../../Appwrite/Authentication";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Signin = () => {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authStatus = useSelector((state) => state.auth.status);
@@ -18,23 +19,25 @@ const Signin = () => {
   } = useForm();
 
   const signin = async (data) => {
-    console.log(data);
-    setError("");
+    setError("")
+    setLoading(true)
     try {
       const createAccount = await authService.createAccount(data);
       if (createAccount) {
         const userData = await authService.getCurrentUser();
-        dispatch(login(userData));
-        navigate("/home");
+        dispatch(login(userData))
+        navigate("/home")
       }
     } catch (error) {
-      setError(error.message);
+      setError(error.message || "An error occurred during Signin.");
+    } finally {
+      setLoading(false)
     }
   };
 
   return (
     <>
-      {error}
+      {error && <p className="text-red-600 text-center my-4">{error}</p>}
       {!authStatus && (
         <div className=" w-full  h-full flex justify-center flex-wrap p-4">
           <div
@@ -67,8 +70,8 @@ const Signin = () => {
                   },
                 })}
               />
-              {errors.userName && (
-                <p className="text-red-600">{errors.userName.message}</p>
+              {errors.name && (
+                <p className="text-red-600">{errors.name.message}</p>
               )}
 
               <Input
@@ -124,6 +127,7 @@ const Signin = () => {
           </div>
         </div>
       )}
+      {loading && <Loader loadingText="Loading..." />}
     </>
   );
 };

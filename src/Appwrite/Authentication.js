@@ -23,7 +23,7 @@ export class Authentication {
                 return userAccount;
             }
         } catch (error) {
-            console.log(`Appwrite Service Error - ${error}`)
+            throw new Error(error.message || 'Signin failed')
         }
     }
 

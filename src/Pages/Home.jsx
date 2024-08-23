@@ -8,13 +8,13 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   setTimeout(() => {
-    BlogServies.readDocuments([Query.limit(5), Query.orderDesc(posts.title)])
+    BlogServies.readDocuments([Query.limit(5), Query.orderDesc(posts?.title)])
       .then((posts) => {
         setLoading(false);
         setPost(posts.documents);
       })
       .catch((error) => {
-        console.log(error);
+        setLoading(false)
       })
       .finally(() => {
         setLoading(false);
@@ -23,22 +23,18 @@ const Home = () => {
 
   return (
     <>
-      {loading ?(
+      {loading ? (
         <Loader loadingText={"loading..."} />
-
-      ):(
-<div
-        className="w-full gap-6  my-4
+      ) : (
+        <div
+          className="w-full gap-6  my-4
       xsm:flex xsm:flex-col xsm:justify-center xsm:items-center xsm:p-4
       sm:flex sm:flex-col sm:justify-center sm:items-center 
       md:flex md:flex-row md:flex-wrap md:justify-center bg-white"
-      >
-        {posts && posts.map((post) => (
-          <CardBlog {...post} key={post.slug}/>
-        ))}
-      </div>
+        >
+          {posts && posts.map((post) => <CardBlog {...post} key={post.slug} />)}
+        </div>
       )}
-      
     </>
   );
 };

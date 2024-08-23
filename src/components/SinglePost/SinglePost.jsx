@@ -13,6 +13,7 @@ const SinglePost = () => {
 
   const loginUSer = useSelector((state) => state.auth.userData);
 
+
   //detele Post 
   const handleDelete = async (id) => {
     const deletePost = await BlogServies.deleteDocument(id);
@@ -25,7 +26,7 @@ const SinglePost = () => {
   useEffect(() => {
     BlogServies.readDocument(slug)
       .then((post) => {
-        setPost(post);
+        setPost(post)
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +51,7 @@ const SinglePost = () => {
 
         <div className="w-[50%] h-96 mx-auto">
           <img
-            className="w-full h-96"
+            className="w-full "
             src={post && BlogServies.getFilePreview(post.content_image)}
             alt=""
           />

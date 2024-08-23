@@ -50,7 +50,6 @@ const BlogFrom = ({ post }) => {
           ? await BlogServies.uploadFile(data.image[0])
           : undefined;
         if (file && post.content_image) {
-          console.log(post.content_image);
           await BlogServies.removeFile(post.content_image);
         }
 

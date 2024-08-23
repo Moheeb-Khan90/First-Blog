@@ -43,7 +43,7 @@ class Blog {
                 }
             )
         } catch (error) {
-            console.log(`Appwrite Service Error- ${error}`)
+            throw new Error(error.message || 'Something Went Wrong')
         }
     }
 
@@ -57,8 +57,7 @@ class Blog {
             )
             return readPost;
         } catch (error) {
-            console.log(`Appwrite Service Error- ${error}`)
-            return false
+            throw new Error(error.message )
         }
     }
 
@@ -72,7 +71,7 @@ class Blog {
             )
             return readPost;
         } catch (error) {
-            console.log(`Appwrite Service Error - ${error}`)
+            throw new Error(error.message)
         }
     }
 
@@ -93,8 +92,7 @@ class Blog {
             )
             return updatePost;
         } catch (error) {
-            console.log(`Appwrite Service Error - ${error}`)
-            return false;
+            throw new Error(error.message)
         }
     }
 
@@ -108,7 +106,7 @@ class Blog {
             )
             return true;
         } catch (error) {
-            console.log(`Appwrite Service Error - ${error}`)
+            throw new Error(error.message)
         }
     }
 
@@ -125,8 +123,7 @@ class Blog {
             return upload
 
         } catch (error) {
-            console.log(`Appwrite Service Error - ${error}`)
-            return false
+            throw new Error(error.message)
         }
     }
 

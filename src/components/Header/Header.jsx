@@ -9,7 +9,6 @@ import { CgFeed } from "react-icons/cg";
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
   const user = useSelector((state) => state.auth.userData);
-  // console.log(user)
 
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -96,7 +95,7 @@ const Header = () => {
         </div>
         {authStatus && (
             <div className="mt-4 md:mt-0 md:ml-4 text-center text-white text-lg font-semibold">
-              {`Wellcome ${user.name},`} <br/>
+              {`Welcome ${user.name},`} <br/>
               <Logout />
             </div>
           )}
