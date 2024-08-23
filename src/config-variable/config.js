@@ -1,0 +1,12 @@
+const config={
+    APPWRITE_URL:String(process.env.REACT_APP_APPWRITE_URL),
+    APPWRITE_PROJECT_ID:String(process.env.REACT_APP_APPWRITE_PROJECT_ID),
+    APPWRITE_DATABASE_ID:String(process.env.REACT_APP_APPWRITE_DATABASE_ID),
+    APPWRITE_COLLECTION_ID:String(process.env.REACT_APP_APPWRITE_COLLECTION_ID),
+    APPWRITE_BUCKET_ID:String(process.env.REACT_APP_APPWRITE_BUCKET_ID),
+    RICH_EDITOR : String(process.env.REACT_APP_RICH_EDITOR_API_KEY)
+
+}
+
+
+export default config;
